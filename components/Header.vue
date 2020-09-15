@@ -9,15 +9,15 @@
       <nuxt-link class="text-gray-200 text-xs font-medium uppercase tracking-wide px-4" to="/">About</nuxt-link>
       <nuxt-link class="text-gray-200 text-xs font-medium uppercase tracking-wide px-4" to="/">Contact</nuxt-link>
     </div>
-    <div class="block md:hidden absolute top-0 right-0 m-3 md:hidden">
-      <button @click="isOpen = !isOpen" type="button" class="relative z-10 block text-gray-500 focus:outline-none hover:text-white">
+    <div class="block md:hidden absolute top-0 right-0 m-3">
+      <button @click="isOpen = !isOpen" type="button" class="relative z-20 block text-gray-500 focus:outline-none hover:text-white">
         <svg viewBox="0 0 20 20" class="fill-current text-red-300 w-6 h-6 mx-4">
           <path v-if="!isOpen" d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
           <path v-if="isOpen" d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
         </svg>
       </button>
     </div>
-    <div :class="isOpen ? 'block' : 'hidden'" class="md:hidden bg-gray-900 absolute top-0 w-full h-full mt-4 h-30 pt-1/2 text-center">
+    <div :class="isOpen ? 'block' : 'hidden'" class="md:hidden bg-gray-900 absolute z-10 top-0 w-full h-full mt-4 h-30 pt-1/2 text-center">
       <nuxt-link to="/account" class="block px-2 py-1 rounded text-white font-semibold hover:bg-gray-800 sm:mt-0 sm:ml-2">Our Menu</nuxt-link>
       <nuxt-link to="/login" class="mt-1 block px-2 py-1 rounded text-white font-semibold hover:bg-gray-800 sm:mt-0 sm:ml-2">About</nuxt-link>
       <nuxt-link to="/" class="mt-1 block px-2 py-1 rounded text-white font-semibold hover:bg-gray-800 sm:mt-0 sm:ml-2">Contact</nuxt-link>
