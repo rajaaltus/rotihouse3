@@ -1,14 +1,18 @@
 <template>
-  <div class="bg-gray-900 text-gray-200 py-2 h-12">
-    <div class="flex justify-center md:absolute md:top-0 md:left-0 md:mx-4 md:my-2">
+  <div class="bg-gray-900 text-gray-200 py-2 h-16">
+    <div class="flex justify-center md:absolute md:top-0 md:left-0 md:mx-20 md:my-2">
       <Logo />
     </div>
     <!-- <svg viewBox="0 0 20 20" class="absolute top-0 right-0 m-3 md:hidden fill-current text-gray-100 h-6 w-6"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg> -->
-    <div class="hidden md:block md:absolute md:top-0 md:right-0 md:m-3">
-      <nuxt-link class="text-gray-200 text-xs font-medium uppercase tracking-wide px-4" to="/">Our Menu</nuxt-link>
-      <nuxt-link class="text-gray-200 text-xs font-medium uppercase tracking-wide px-4" to="/">About</nuxt-link>
-      <nuxt-link class="text-gray-200 text-xs font-medium uppercase tracking-wide px-4" to="/">Contact</nuxt-link>
+    <div class="hidden md:block md:absolute md:top-0 md:right-0 md:mx-20 md:my-4">
+      <div class="flex items-center">
+      <nuxt-link class="text-gray-400 text-xs font-medium uppercase tracking-wide px-4 hover:text-gray-100 leading-loose" to="/">Our Menu</nuxt-link>
+      <nuxt-link class="text-gray-400 text-xs font-medium uppercase tracking-wide px-4 hover:text-gray-100" to="/">About</nuxt-link>
+      <nuxt-link class="text-gray-400 text-xs font-medium uppercase tracking-wide px-4 hover:text-gray-100" to="/">Contact</nuxt-link>
+      <account-dropdown class="hidden md:block sm:ml-6" />
+      </div>
     </div>
+    
     <div class="block md:hidden absolute top-0 right-0 m-3">
       <button @click="isOpen = !isOpen" type="button" class="relative z-20 block text-gray-500 focus:outline-none hover:text-white">
         <svg viewBox="0 0 20 20" class="fill-current text-red-300 w-6 h-6 mx-4">
@@ -17,7 +21,7 @@
         </svg>
       </button>
     </div>
-    <div :class="isOpen ? 'block' : 'hidden'" class="md:hidden bg-gray-900 absolute z-10 top-0 w-full h-full mt-4 h-30 pt-1/2 text-center">
+    <div :class="isOpen ? 'block' : 'hidden'" class="md:hidden bg-gray-900 absolute z-10 top-0 overflow-hidden w-full h-full mt-4 h-30 pt-1/2 text-center">
       <nuxt-link to="/account" class="block px-2 py-1 rounded text-white font-semibold hover:bg-gray-800 sm:mt-0 sm:ml-2">Our Menu</nuxt-link>
       <nuxt-link to="/login" class="mt-1 block px-2 py-1 rounded text-white font-semibold hover:bg-gray-800 sm:mt-0 sm:ml-2">About</nuxt-link>
       <nuxt-link to="/" class="mt-1 block px-2 py-1 rounded text-white font-semibold hover:bg-gray-800 sm:mt-0 sm:ml-2">Contact</nuxt-link>

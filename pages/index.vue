@@ -1,11 +1,10 @@
 <template>
   <div>
     <Hero />
+    <shop-layout />
   </div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
-
-
