@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="grid grid-cols-3 mt-10 bg-gray-800">
-      <div class="col-span-1 mx-20 px-4 py-4">
+    <div class="md:grid md:grid-cols-3 px-6 mt-10 bg-gray-800">
+      <div class="mx-auto px-4 py-6 sm:col-span-1 sm:mx-20 sm:px-4 sm:py-4 ">
         <div class="flex items-center">
           <svg viewBox="0 0 2253.73 2892.07" class="fill-current w-16 h-14">
             <defs>
@@ -105,12 +105,12 @@
             </g>
           </svg>
           <div class="px-2">
-            <h4 class="text-2xl text-red-500 font-semibold antialiased tracking-wide">Roti House</h4>
-            <span class="text-gray-500 text-md tracking-wider">Traditional Indian Restaurant</span>
+            <h4 class="text-xl md:text-2xl text-red-500 font-semibold antialiased tracking-wide">Roti House</h4>
+            <span class="text-gray-500 text-sm md:text-md tracking-wider">Traditional Indian Restaurant</span>
           </div>
         </div>
 
-        <p class="pt-2 font-medium text-sm text-gray-500">23/5, Khun Bu Lom Road, Sihom, Vientiane, Lao PDR.</p>
+        <p class="pt-2 font-medium text-xs md:text-sm text-gray-500">23/5, Khun Bu Lom Road, Sihom, Vientiane, Lao PDR.</p>
         <p></p>
         <p class="flex items-center text-gray-600">
           <span
@@ -124,19 +124,19 @@
           ></span>
           <span class="pl-2 pt-2">+856 2058026838 | +856 2054240237 </span>
         </p>
-        <p class="py-1 text-gray-600 text-sm tracking-wide">mailus@rotihouselao.com | www.rotihouselao.com</p>
+        <p class="py-1 text-gray-600 text-sm text-center md:text-left tracking-wide">mailus@rotihouselao.com | www.rotihouselao.com</p>
       </div>
-      <div class="h-48 col-span-1">
+      <div class="h-48 md:col-span-1 mx-auto">
         <h4 class="mx-2 mt-4 text-gray-500 font-semibold tracking-wide text-xl">Quicklinks</h4>
-        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400" to="/">About</nuxt-link>
-        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400" to="/">Our menu</nuxt-link>
-        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400" to="/">Download menu</nuxt-link>
-        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400" to="/">Contact</nuxt-link>
+        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400 text-sm" to="/">About</nuxt-link>
+        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400 text-sm" to="/">Our menu</nuxt-link>
+        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400 text-sm" to="/">Download menu</nuxt-link>
+        <nuxt-link class="block text-gray-600 mx-2 py-1 hover:text-gray-400 text-sm" to="/">Contact</nuxt-link>
       </div>
       <div class="h-48 col-span-1"></div>
     </div>
     <div class="bg-gray-900 h-10">
-      <div class="container mx-auto text-center text-gray-600 pt-2">&copy; Copyrights - 2020. Powdered by <a class="text-red-500 hover:text-red-600" href="https://altusinfotech.com">ALTUS</a></div>
+      <div class="container mx-auto text-center text-gray-600 pt-2 text-sm">&copy; Copyrights - 2020. Powered by <a class="text-red-500 hover:text-red-600" href="https://altusinfotech.com">ALTUS</a></div>
     </div>
   </div>
 </template>
