@@ -6,7 +6,7 @@
       </svg>
     </button>
     <button class="fixed inset-0 h-full w-full z-20" v-if="showDrop" @click="showDrop = false" tabindex="-1"></button>
-    <div v-if="showDrop" class="sm:absolute right-0 z-20 mt-2 py-2 w-56 bg-gray-900 rounded-b-lg shadow-xl">
+    <div v-if="showDrop" class="sm:absolute right-0 z-20 mt-2 py-2 w-56 bg-gray-900 shadow-lg">
       <a class="block px-4 py-2 text-gray-400 hover:bg-red-600 hover:text-white" href="#">Account Settings</a>
       <a class="block px-4 py-2 text-gray-400 hover:bg-red-600 hover:text-white" href="#">My Orders</a>
       <a class="block px-4 py-2 text-gray-400 hover:bg-red-600 hover:text-white" href="#">Sign out</a>
