@@ -27,7 +27,7 @@ export default {
     }),
   },
   async fetch({store}) {
-    store.dispatch('product/setDishes', '');
+    await store.dispatch('product/initDishes');
   },
   methods: {},
 };

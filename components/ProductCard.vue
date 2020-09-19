@@ -1,18 +1,21 @@
 <template>
   <div class="sm:max-w-sm max-w-full px-4 mb-4 py-4 sm:p-0 sm:mb-8 border border-1 border-solid border-gray-300 hover:shadow-lg transition duration-500">
+    <nuxt-link :to="`/dish/${dish.id}`">
     <div class="">
-      <div v-if="loading" class="border border-gray-300 sm:max-w-sm max-w-full px-6  py-4 sm:p-0">
+      <div v-if="loading" class="border border-gray-300 sm:max-w-sm max-w-full px-6 py-4 sm:p-0">
         <div class="animate-pulse flex space-x-4 h-64">
           <img class="h-full w-full object-cover" src="/placeholder.png" alt="" />
         </div>
       </div>
 
       <div v-else class="relative pb-2/3">
-        <img class="absolute top-0 bottom-0 h-full w-full object-cover" :src="dish.imageUrl" :alt="dish.imageAlt" />
-        <button class="absolute px-2 py-1 bg-teal-700 text-teal-200 rounded-full shadow-lg hover:shadow-none cursor:pointer m-2 ">
+        <img class="absolute top-0 bottom-0 h-full w-full object-cover" :src="dish.image?$axios.defaults.baseURL + dish.image.url:'/logo.svg'" :alt="dish.image.name" />
+        <button class="absolute px-2 py-1 bg-gray-800 text-teal-200 rounded-full shadow-lg hover:shadow-none cursor:pointer m-2">
           <div class="flex items-center">
-          <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
-          <span>25 Mins</span>
+            <svg class="fill-none h-5 w-5 text-gray-400"  viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="ml-1 text-xs tracking-wider">25 Mins</span>
           </div>
         </button>
       </div>
@@ -27,14 +30,14 @@
         <div v-else class="bg-white p-6">
           <div class="flex items-baseline">
             <span class="inline-block mr-2 bg-green-600 text-xs text-white px-2 uppercase font-semibold tracking-wide rounded-full">New</span>
-            <div class="text-gray-600 text-xs uppercase tracking-wide">{{ dish.beds }} beds &bull; {{ dish.baths }} baths</div>
+            <div class="text-gray-600 text-xs uppercase tracking-wide">{{ dish.type }}</div>
           </div>
           <h4 class="mt-1 font-semibold text-lg leading-tight truncate">
-            {{ dish.title }}
+            {{ dish.name }}
           </h4>
           <div class="mt-1">
-            {{ dish.formattedPrice }}
-            <span class="text-gray-600 text-sm"> / wk</span>
+            {{ dish.price }}
+            <span class="text-gray-600 text-sm"> kip</span>
           </div>
           <div class="mt-2 flex items-center">
             <svg v-for="i in 5" :key="i" :class="i <= dish.rating ? 'text-green-600' : 'text-gray-400'" class="fill-current h-4 w-4" viewBox="0 0 20 20">
@@ -45,6 +48,7 @@
         </div>
       </div>
     </div>
+    </nuxt-link>
   </div>
 </template>
 
@@ -55,9 +59,7 @@ export default {
     return { loading: true };
   },
   async mounted() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+    this.loading = false;
   },
 };
 </script>

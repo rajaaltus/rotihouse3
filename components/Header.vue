@@ -7,7 +7,7 @@
     <div class="hidden md:block md:absolute md:top-0 md:right-0 md:mx-20 md:my-4">
       <div class="flex items-center">
       <nuxt-link class="text-gray-400 text-xs font-medium uppercase tracking-wide px-4 hover:text-gray-100 leading-loose" to="/">Our Menu</nuxt-link>
-      <nuxt-link class="text-gray-400 text-xs font-medium uppercase tracking-wide px-4 hover:text-gray-100" to="/">About</nuxt-link>
+      <nuxt-link class="text-gray-400 text-xs font-medium uppercase tracking-wide px-4 hover:text-gray-100" to="/about">About</nuxt-link>
       <nuxt-link class="text-gray-400 text-xs font-medium uppercase tracking-wide px-4 hover:text-gray-100" to="/">Contact</nuxt-link>
       <account-dropdown class="hidden md:block sm:ml-6" />
       </div>

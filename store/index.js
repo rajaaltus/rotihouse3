@@ -13,6 +13,7 @@ export const mutations = {
 };
 
 export const actions = {
+  
   setSideCart({commit}) {
     commit('SET_SIDECART', true);
   },

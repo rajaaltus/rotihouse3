@@ -33,7 +33,7 @@
 export default {
   data() {
     return {
-      search: "Search here...",
+      search: "",
       cart: true,
     };
   },
@@ -42,6 +42,9 @@ export default {
       console.log(val);
       this.$store.dispatch('product/setDishes', val);
     }
+  },
+  mounted() {
+    this.clearText();
   },
   methods: {
     clearText() {
