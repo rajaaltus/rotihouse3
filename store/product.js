@@ -4,9 +4,7 @@ export const state = () => ({
 });
 
 export const mutations = {
-  SET_DISHES(state, val) {
-    state.filteredDishes = state.dishes.filter(dish => dish.name.toLowerCase().includes(val.toLowerCase()));
-  },
+  
   SET_DISHES_BY_CATEGORY(state, val) {
     state.filteredDishes = state.dishes.filter(dish => dish.category.name.toLowerCase().includes(val.toLowerCase()));
   },
@@ -19,9 +17,9 @@ export const mutations = {
 };
 
 export const actions = {
-   setDishes({commit}, val) {
-    commit('SET_DISHES', val);
-  },
+  //  setDishes({commit}, val) {
+  //   commit('SET_DISHES', val);
+  // },
   async setResult({commit}, result) {
     await commit('SET_RESULT', result);
   },

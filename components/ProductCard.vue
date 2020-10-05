@@ -9,7 +9,7 @@
       </div>
 
       <div v-else class="relative pb-2/3">
-        <img class="absolute top-0 bottom-0 h-full w-full object-cover" :src="dish.image?$axios.defaults.baseURL + dish.image.url:'/logo.svg'" :alt="dish.image.name" />
+        <img class="absolute top-0 bottom-0 h-full w-full object-cover" :src="dish.image?$axios.defaults.baseURL + dish.image.url:'/logo.svg'" :alt="dish.name" />
         <button class="absolute px-2 py-1 bg-gray-800 text-teal-200 rounded-full shadow-lg hover:shadow-none cursor:pointer m-2">
           <div class="flex items-center">
             <svg class="fill-none h-5 w-5 text-gray-400"  viewBox="0 0 24 24" stroke="currentColor">

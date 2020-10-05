@@ -17,45 +17,55 @@ export default {
       categories: [
         {
           id: 1,
+          name: 'All',
+          icon: ""
+        },
+        {
+          id: 2,
           name: "Appetizers",
           icon: "",
         },
         {
-          id: 2,
+          id: 3,
           name: "Breads",
           icon: "",
         },
         {
-          id: 3,
+          id: 4,
           name: "Rice",
           icon: "",
         },
         {
-          id: 4,
+          id: 5,
           name: "Curries",
           icon: "",
         },
         {
-          id: 5,
+          id: 6,
           name: "Rolls",
           icon: "",
         },
         {
-          id: 6,
+          id: 7,
           name: "Kebabs",
           icon: "",
         },
         {
-          id: 7,
+          id: 8,
           name: "Smoothies",
           icon: "",
         },
       ],
     };
   },
+  
   methods: {
     filterDishes(name) {
-      this.$store.dispatch('product/setDishesByCategory',name);
+      if (name==='All')
+        this.$store.dispatch('nuxtServerInit')
+      else
+        this.$store.dispatch('setDishesByCategory',name);
+      
     }
   }
 };
