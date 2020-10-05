@@ -12,12 +12,18 @@ export const mutations = {
   },
   INIT_DISHES(state, resp) {
     state.dishes = resp;
+  },
+  SET_RESULT(state, result) {
+    state.filteredDishes = result;
   }
 };
 
 export const actions = {
-  setDishes({commit}, val) {
+   setDishes({commit}, val) {
     commit('SET_DISHES', val);
+  },
+  async setResult({commit}, result) {
+    await commit('SET_RESULT', result);
   },
   setDishesByCategory({commit}, val) {
     commit('SET_DISHES_BY_CATEGORY', val);

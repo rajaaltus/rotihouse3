@@ -22,7 +22,8 @@
               d="M457 216L315 74a30 30 0 10-21 21l121 121H97L218 95a30 30 0 10-21-21L55 216H0v30h28l46 174c8 33 38 56 72 56h220c34 0 64-23 72-56l46-174h28v-30h-55zM181 391h-30v-90h30v90zm60 0h-30v-90h30v90zm60 0h-30v-90h30v90zm60 0h-30v-90h30v90z"
             />
           </svg>
-          <span v-if="cart" class="mr-2 ml-1 px-2 bg-green-500 rounded-full text-xs font-normal text-gray-800">3</span>
+          <span v-if="cart" class="mr-2 ml-1 px-2 bg-green-500 rounded-full text-xs font-normal text-gray-800">4</span>
+          <span v-if="cart" class="mr-2 w-24 px-2 bg-green-500 rounded-full text-xs font-normal text-gray-800">485,000 kip</span>
         </div>
       </button>
     </div>
@@ -38,15 +39,21 @@ export default {
     };
   },
   watch: {
-    search(val) {
+    async search(val) {
       console.log(val);
-      this.$store.dispatch('product/setDishes', val);
+      // this.$store.dispatch('product/setDishes', val);
+      const result =  await this.$strapi.$dishes.find({'name_contains': val})
+      this.$store.dispatch('product/setResult', result);
     }
   },
   mounted() {
     this.clearText();
   },
   methods: {
+    // async searchDish() {
+    //   const result =  await this.$strapi.$dishes.find({'name_contains': this.search})
+    //   this.$store.dispatch('product/setResult', result);
+    // },
     clearText() {
       this.$store.dispatch('product/setDishes', '');
       this.search = "";

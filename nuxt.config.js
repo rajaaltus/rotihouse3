@@ -56,7 +56,12 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/strapi'
   ],
+  strapi: {
+    url: 'https://api.rotihouselao.com',
+    entities: ['categories','dishes','sliders']
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

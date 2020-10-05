@@ -1,6 +1,7 @@
 <template>
   <div>
     <Hero />
+    <Toast v-if="$store.state.alert" />
     <main-search />
     <category-bar class="mx-auto text-center" />
     <div class="md:px-20 sm:mx-auto sm:px-4 px-2 sm:py-8 mt-10">
@@ -26,8 +27,11 @@ export default {
       filteredDishes: (state) => state.product.filteredDishes,
     }),
   },
-  async fetch({store}) {
-    await store.dispatch('product/initDishes');
+  // async fetch({store}) {
+  //   await store.dispatch('product/initDishes');
+  // },
+  mounted() {
+    this.$store.dispatch('product/initDishes');
   },
   methods: {},
 };
