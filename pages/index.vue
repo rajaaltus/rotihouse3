@@ -12,20 +12,21 @@
         <div class="flex justify-between w-full items-center mr-4">
           <input v-model="search" type="search" class="border-none focus:outline-none font-3xl mr-2 py-1 text-gray-500 w-full" @focus="search = ''" placeholder="Search Here..." />
         </div>
-        <button @click="openCart" class="border-none focus:outline-none">
-          <div class="mr-2 bg-gray-800 rounded-full flex items-center py-1 shadow-md hover:shadow-lg hover:bg-gray-600 transition ease-out-in duration-500">
-            <svg viewBox="0 0 512 512" :class="cart ? 'mr-0 shadow-lg' : 'mr-2'" class="fill-current text-green-500 w-6 h-6 ml-2">
-              <path
-                d="M457 216L315 74a30 30 0 10-21 21l121 121H97L218 95a30 30 0 10-21-21L55 216H0v30h28l46 174c8 33 38 56 72 56h220c34 0 64-23 72-56l46-174h28v-30h-55zM181 391h-30v-90h30v90zm60 0h-30v-90h30v90zm60 0h-30v-90h30v90zm60 0h-30v-90h30v90z"
-              />
-            </svg>
-            <span v-if="cart" class="mr-2 ml-1 px-2 bg-green-500 rounded-full text-xs font-normal text-gray-800">3</span>
-            <span v-if="cart" class="mr-2 w-24 px-2 bg-green-500 rounded-full text-xs font-normal text-gray-800">145,000 kip</span>
-          </div>
-        </button>
       </div>
     </section>
-
+    <div class="fixed z-50 top-0 right-0 h-full flex items-center">
+      <button @click="openCart" class="border-none focus:outline-none">
+        <div class="mr-2 bg-gray-800 rounded-full flex items-center py-1 shadow-md hover:shadow-lg hover:bg-gray-600 transition ease-out-in duration-500">
+          <svg viewBox="0 0 512 512" :class="numberOfItems > 0 ? 'mr-0 shadow-lg' : 'mr-2'" class="fill-current text-green-500 w-6 h-6 ml-2">
+            <path
+              d="M457 216L315 74a30 30 0 10-21 21l121 121H97L218 95a30 30 0 10-21-21L55 216H0v30h28l46 174c8 33 38 56 72 56h220c34 0 64-23 72-56l46-174h28v-30h-55zM181 391h-30v-90h30v90zm60 0h-30v-90h30v90zm60 0h-30v-90h30v90zm60 0h-30v-90h30v90z"
+            />
+          </svg>
+          <span v-if="numberOfItems > 0" class="mr-2 ml-1 px-2 bg-green-500 rounded-full text-xs font-normal text-gray-800">{{ numberOfItems }}</span>
+          <!-- <span v-if="numberOfItems > 0" class="mr-2 w-24 px-2 bg-green-500 rounded-full text-xs font-normal text-gray-800">{{ totalPrice }} kip</span> -->
+        </div>
+      </button>
+    </div>
     <!-- Category Bar -->
     <category-bar class="mx-auto text-center" />
 
@@ -55,6 +56,12 @@ export default {
     ...mapState({
       dishes: (state) => state.filteredDishes,
     }),
+    totalPrice() {
+      return this.$store.getters["cart/price"];
+    },
+    numberOfItems() {
+      return this.$store.getters["cart/numberOfItems"];
+    },
     filteredDishes() {
       return this.dishes.filter((dish) => dish.name.toLowerCase().includes(this.search.toLowerCase()));
     },

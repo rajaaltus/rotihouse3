@@ -38,7 +38,7 @@
             <h4 class="mt-1 w-3/5 font-semibold text-lg leading-tight truncate">
               {{ dish.name }}
             </h4>
-            <button @click="handleAdd(dish)" class="p-1 flex items-center border border-gray-100 hover:border-gray-400 focus:outline-none">
+            <button @click="addToCart(dish)" class="p-1 flex items-center border border-gray-100 hover:border-gray-400 focus:outline-none">
               <svg class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -62,11 +62,13 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 export default {
   props: ["dish"],
   data() {
     return { loading: true };
   },
+
   async mounted() {
     this.loading = false;
   },
@@ -74,6 +76,10 @@ export default {
     handleAdd(dish) {
       console.log(dish);
     },
+    ...mapMutations({
+      addToCart: "cart/add",
+      removeFromCart: "cart/remove",
+    }),
   },
 };
 </script>
