@@ -28,29 +28,30 @@
                         <th class="w-1/3 py-2">Name</th>
                         <th class="w-1/6 py-2">Price (unit)</th>
                         <th class="w-1/6 py-2">Qty</th>
-                        <th class="w-1/3 py-2"></th>
+                        <th class="w-1/3 py-2">Total</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr class="border-b border-solid border-gray-400" v-for="(item, index) in selectedItems" :key="index">
                         <td class="py-2 w-1/3">
                           <div class="flex items-center justify-start">
-                            <img class="w-16 h-16 rounded-full bg-white p-2" :src="item.image" :alt="item.name" />
+                            <img class="w-16 h-16 rounded-full bg-white object-cover p-2" :src="item.image" :alt="item.name" />
                             <span class="text-sm ml-2 font-medium text-gray-700">{{ item.name }}</span>
                           </div>
                         </td>
-                        <td class="py-2 w-1/6 text-gray-700 text-sm font-medium">$ {{ item.price }}</td>
-                        <td class="py-2 w-1/6 text-gray-700 text-sm">{{ item.quantity }}0</td>
-                        <td class="py-2 w-1/3">
-                          <a class="bg-gray-500 rounded-full px-3 py-1 text-white hover:shadow-md cursor-pointer text-lg font-semibold"><span @click="addToCart(item)"> +</span></a>
-                          <a class="bg-red-700 rounded-full px-3 py-1 text-gray-300 hover:shadow-md cursor-pointer text-lg font-semibold"><span @click="removeFromCart(item)"> -</span></a>
+                        <td class="py-2 w-1/6 text-gray-700 text-sm font-medium">{{ item.price }} Kip</td>
+                        <td class="py-2 w-1/6 text-gray-700 text-sm">{{ item.quantity }}</td>
+                        <td class="py-2 w-1/3 text-gray-700 text-sm font-medium">
+                          {{item.price * item.quantity}}
+                          <!-- <a class="bg-gray-500 rounded-full px-3 py-1 text-white hover:shadow-md cursor-pointer text-lg font-semibold"><span @click="addToCart(item)"> +</span></a>
+                          <a class="bg-red-700 rounded-full px-3 py-1 text-gray-300 hover:shadow-md cursor-pointer text-lg font-semibold"><span @click="removeFromCart(item)"> -</span></a> -->
                         </td>
                       </tr>
                     </tbody>
                   </table>
                   <div class="">
                     <button class="relative w-full bg-green-500 py-3 rounded text-green-100 mt-4">Go to Checkout
-                      <span class="absolute right-0 top-0 mr-2 mt-2 bg-green-600  text-white px-2 py-1 rounded-md ml-2 ">$ 46.50</span>
+                      <span class="absolute right-0 top-0 mr-2 mt-2 bg-green-600  text-white px-2 py-1 rounded-md ml-2 ">145,000 Kip</span>
                     </button>
                     
                   </div>
@@ -94,22 +95,22 @@ export default {
     return {
       selectedItems: [
         {
-          name: "Onion",
-          price: "12.50",
-          quantity: 5,
-          image: "/products/onion.svg",
-        },
-        {
-          name: "Tomato",
-          price: "2.50",
-          quantity: 1,
-          image: "/products/tomato.svg",
-        },
-        {
-          name: "Nescafe",
-          price: "18.00",
+          name: "Veg Samosa",
+          price: "15000",
           quantity: 2,
-          image: "/products/nescafe.svg",
+          image: "https://api.rotihouselao.com/uploads/501446ec2b374fb88481f7a8210d1c84.jpg",
+        },
+        {
+          name: "Chicken lollipop",
+          price: "45000",
+          quantity: 1,
+          image: "https://api.rotihouselao.com/uploads/9d782dd63cad47f28fdc0bb8a42a34d0.jpeg",
+        },
+        {
+          name: "Poori Masala",
+          price: "35000",
+          quantity: 2,
+          image: "https://api.rotihouselao.com/uploads/1e42692ab04040ec9ce1b3d139a2a9fc.jpg",
         },
       ],
     };

@@ -17,8 +17,8 @@ export default {
       categories: [
         {
           id: 1,
-          name: 'All',
-          icon: ""
+          name: "All",
+          icon: "",
         },
         {
           id: 2,
@@ -58,16 +58,12 @@ export default {
       ],
     };
   },
-  
+
   methods: {
     filterDishes(name) {
-      if (name==='All')
-        this.$store.dispatch('nuxtServerInit')
-      else
-        this.$store.dispatch('setDishesByCategory',name);
-      
-    }
-  }
+      if (name === "All") this.$store.dispatch("nuxtServerInit");
+      else this.$store.dispatch("setDishesByCategory", name);
+    },
+  },
 };
 </script>
-
