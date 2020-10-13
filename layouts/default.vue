@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-col h-screen">
     <Header />
-    <Nuxt class="flex-1 overflow-y-auto p-5" />
-    <Footer />
+    <div class="flex-1 overflow-y-auto">
+      <Nuxt class="min-h-screen bg-gray-200" />
+      <Footer />
+    </div>
   </div>
 </template>

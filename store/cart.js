@@ -20,6 +20,7 @@ export const mutations = {
       record.quantity++;
     }
     Cookies.set("cart", state.items);
+    localStorage.setItem("cart", state.items);
   },
   remove(state, item) {
     const record = state.items.find((i) => i.id === item.id);
@@ -31,10 +32,12 @@ export const mutations = {
       state.items.splice(index, 1);
     }
     Cookies.set("cart", state.items);
+    localStorage.setItem("cart", state.items);
   },
   emptyList(state) {
     state.items = [];
     Cookies.set("cart", state.items);
+    localStorage.setItem("cart", state.items);
   },
 };
 

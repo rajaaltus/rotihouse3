@@ -14,7 +14,7 @@
         </div>
       </div>
     </section>
-    <div class="fixed z-50 top-0 right-0 h-full flex items-center">
+    <div class="fixed z-30 top-0 right-0 h-full flex items-center">
       <button @click="openCart" class="border-none focus:outline-none">
         <div class="mr-2 bg-gray-800 rounded-full flex items-center py-1 shadow-md hover:shadow-lg hover:bg-gray-600 transition ease-out-in duration-500">
           <svg viewBox="0 0 512 512" :class="numberOfItems > 0 ? 'mr-0 shadow-lg' : 'mr-2'" class="fill-current text-green-500 w-6 h-6 ml-2">

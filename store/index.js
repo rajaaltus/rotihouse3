@@ -18,7 +18,7 @@ export const mutations = {
     state.filteredDishes = resp;
   },
   SET_DISHES_BY_CATEGORY(state, val) {
-    state.filteredDishes = state.dishes.filter((dish) => dish.category.name.toLowerCase().includes(val.toLowerCase()));
+    state.filteredDishes = state.dishes.filter((dish) => dish.category.name.toLowerCase().match(val.toLowerCase()));
   },
 };
 
@@ -33,6 +33,7 @@ export const actions = {
       const parsed = cookieparser.parse(req.headers.cookie);
       user = (parsed.user && JSON.parse(parsed.user)) || null;
       cart = (parsed.cart && JSON.parse(parsed.cart)) || [];
+      if (process.browser) console.log(JSON.parse(localStorage.getItem("cart")) || []);
     }
     commit("auth/setUser", user);
     commit("cart/setItems", cart);

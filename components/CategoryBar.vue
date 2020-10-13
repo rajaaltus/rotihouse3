@@ -61,8 +61,8 @@ export default {
 
   methods: {
     filterDishes(name) {
-      if (name === "All") this.$store.dispatch("nuxtServerInit");
-      else this.$store.dispatch("setDishesByCategory", name);
+      if (name === "All") name = "";
+      this.$store.dispatch("setDishesByCategory", name);
     },
   },
 };

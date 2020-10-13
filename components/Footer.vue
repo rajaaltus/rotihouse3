@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="md:grid md:grid-cols-3 px-6 mt-10 bg-gray-800">
-      <div class="mx-auto px-4 py-6 sm:col-span-1 sm:mx-20 sm:px-4 sm:py-4 ">
+    <div class="md:grid md:grid-cols-3 px-6 bg-gray-800">
+      <div class="mx-auto px-4 py-6 sm:col-span-1 sm:mx-20 sm:px-4 sm:py-4">
         <div class="flex items-center">
           <svg viewBox="0 0 2253.73 2892.07" class="fill-current w-16 h-14">
             <defs>
