@@ -25,6 +25,9 @@ export default {
    ** Global CSS
    */
   css: [],
+  // router: {
+  //   middleware: ["auth"],
+  // },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
@@ -50,10 +53,23 @@ export default {
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
     "@nuxtjs/strapi",
+    "@nuxtjs/auth",
   ],
   strapi: {
     url: "https://api.rotihouselao.com",
     entities: ["categories", "dishes", "sliders"],
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: "/auth/local", method: "post", propertyName: "jwt" },
+          logout: false,
+          user: { url: "/users/me", method: "get", propertyName: false },
+        },
+        tokenType: "Bearer",
+      },
+    },
   },
   /*
    ** Axios module configuration
@@ -66,5 +82,7 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {
+    cssSourceMap: false,
+  },
 };

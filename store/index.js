@@ -1,12 +1,23 @@
 import cookieparser from "cookieparser";
+import Cookies from "js-cookie";
 
 export const state = () => ({
   sideCart: false,
   filteredDishes: [],
   dishes: [],
+  user: null,
 });
 
 export const mutations = {
+  setUser(state, user) {
+    state.user = user;
+    Cookies.set("user", user);
+  },
+  logout(state) {
+    state.user = null;
+    Cookies.set("user", null);
+    Cookies.set("cart", null);
+  },
   SET_SIDECART(state, sideCart) {
     state.sideCart = sideCart;
   },
@@ -31,13 +42,14 @@ export const actions = {
     let cart = [];
     if (req && req.headers && req.headers.cookie) {
       const parsed = cookieparser.parse(req.headers.cookie);
-      user = (parsed.user && JSON.parse(parsed.user)) || null;
       cart = (parsed.cart && JSON.parse(parsed.cart)) || [];
-      if (process.browser) console.log(JSON.parse(localStorage.getItem("cart")) || []);
     }
-    commit("auth/setUser", user);
+
+    user = this.$auth.user;
+    commit("setUser", user);
     commit("cart/setItems", cart);
   },
+
   setDishesByCategory({ commit }, val) {
     commit("SET_DISHES_BY_CATEGORY", val);
   },
@@ -46,5 +58,11 @@ export const actions = {
   },
   closeCart({ commit }) {
     commit("CLOSE_CART", false);
+  },
+};
+
+export const getters = {
+  username: (state) => {
+    return state.user && state.user.username;
   },
 };
