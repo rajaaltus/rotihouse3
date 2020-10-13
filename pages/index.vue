@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero />
+    <Hero class="hero" />
     <Toast v-if="$store.state.alert" />
     <!-- Search Section -->
     <section class="px-6 sm:px-20 mt-10">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </section>
-    <div class="fixed z-30 top-0 right-0 h-full flex items-center">
+    <div class="cart fixed z-30 top-0 right-0 h-full flex items-center">
       <button @click="openCart" class="border-none focus:outline-none">
         <div class="mr-2 bg-gray-800 rounded-full flex items-center py-1 shadow-md hover:shadow-lg hover:bg-gray-600 transition ease-out-in duration-500">
           <svg viewBox="0 0 512 512" :class="numberOfItems > 0 ? 'mr-0 shadow-lg' : 'mr-2'" class="fill-current text-green-500 w-6 h-6 ml-2">
@@ -44,6 +44,7 @@
 
 <script>
 import { mapState } from "vuex";
+import gsap from "gsap";
 export default {
   data() {
     return {
@@ -65,6 +66,20 @@ export default {
     filteredDishes() {
       return this.dishes.filter((dish) => dish.name.toLowerCase().includes(this.search.toLowerCase()));
     },
+  },
+
+  async mounted() {
+    gsap.fromTo(
+      ".hero",
+      { y: "-400" },
+      {
+        y: 0,
+        duration: 1,
+        ease: "bounce",
+        delay: 1,
+      }
+    );
+    gsap.fromTo(".cart", { y: -1000 }, { y: 0, duration: 1, ease: "bounce", delay: 1.5 });
   },
   methods: {
     openCart() {
