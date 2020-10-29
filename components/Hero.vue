@@ -1,6 +1,6 @@
 <template>
   <div>
-    <carousel :autoplay="true" :dots="true" :nav="false" :items="1" :autoHeight="true">
+    <carousel :autoplay="true" :items="1" :autoHeight="true">
       <div style="height: 30vh;" class="w-full relative">
         <img class="object-cover h-full" src="https://images.unsplash.com/photo-1601050690294-397f3c324515?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" />
         <div class="absolute top-0 mt-20 md:mt-40 w-full md:w-1/2 px-10 md:px-20">
@@ -32,7 +32,6 @@ export default {
     return {
       slickOptions: {
         slidesToShow: 1,
-        arrows: true,
       },
     };
   },

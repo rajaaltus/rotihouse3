@@ -1,9 +1,3 @@
-/*
- ** TailwindCSS Configuration File
- **
- ** Docs: https://tailwindcss.com/docs/configuration
- ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
- */
 const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   experimental: {
@@ -11,9 +5,16 @@ module.exports = {
   },
   dark: "class",
   theme: {
+    darkSelector: ".dark-mode",
     extend: {
       fontFamily: {
         sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
+      },
+      height: {
+        "screen/2": "50vh",
+        "screen/3": "calc(100vh / 3)",
+        "screen/4": "calc(100vh / 4)",
+        "screen/5": "calc(100vh / 5)",
       },
       spacing: {
         "1/2": "50%",
@@ -48,11 +49,16 @@ module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
+    defaultLineHeights: true,
+    standardFontWeights: true,
   },
-  variants: {},
-  plugins: [],
+  variants: {
+    backgroundColor: ["dark", "dark-hover", "dark-group-hover", "dark-even", "dark-odd", "hover", "responsive"],
+    borderColor: ["dark", "dark-disabled", "dark-focus", "dark-focus-within", "hover", "responsive"],
+    textColor: ["dark", "dark-hover", "dark-active", "dark-placeholder", "hover", "responsive"],
+  },
+  plugins: [require("tailwindcss-dark-mode")()],
   purge: {
-    // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === "production",
     layers: ["utilities"],
     content: ["components/**/*.vue", "layouts/**/*.vue", "pages/**/*.vue", "plugins/**/*.js", "nuxt.config.js"],

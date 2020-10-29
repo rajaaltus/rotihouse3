@@ -1,14 +1,20 @@
 <template>
-  <div class="bg-white text-gray-900 py-2 h-16">
+  <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 py-2 h-16">
     <div class="flex justify-center md:absolute md:top-0 md:left-0 md:mx-20 md:my-2">
       <Logo />
     </div>
     <!-- <svg viewBox="0 0 20 20" class="absolute top-0 right-0 m-3 md:hidden fill-current text-gray-100 h-6 w-6"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg> -->
     <div class="hidden md:block md:absolute md:top-0 md:right-0 md:mx-20 md:my-4">
       <div class="flex items-center">
-        <nuxt-link class="text-gray-800 text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600 leading-loose" to="/menu">Our Menu</nuxt-link>
-        <nuxt-link class="text-gray-800 text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600" to="/about">About</nuxt-link>
-        <nuxt-link class="text-gray-800 text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600" to="/contact">Contact</nuxt-link>
+        <button class="p-1 rounded-full focus:outline-none bg-gray-600 hover:bg-gray-500 duration-200">
+          <svg fill="none" class="w-5 h-5 text-white" viewBox="0 0 24 24" stroke="currentColor" @click="toggleColor">
+            <path v-if="$colorMode.preference === 'dark'" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15 6h0M6 6h0m12 0h0M6 18h0m10-6a4 4 0 11-8 0 4 4 0 018 0z" />
+            <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 15A9 9 0 019 4a9 9 0 003 17 9 9 0 008-6z" />
+          </svg>
+        </button>
+        <nuxt-link class="text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600 leading-loose" to="/menu">Our Menu</nuxt-link>
+        <nuxt-link class="text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600" to="/about">About</nuxt-link>
+        <nuxt-link class="text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600" to="/contact">Contact</nuxt-link>
         <account-dropdown class="hidden md:block sm:ml-6" />
       </div>
     </div>
@@ -145,6 +151,15 @@ export default {
     return {
       isOpen: false,
     };
+  },
+  mounted() {
+    this.$colorMode.preference = "light";
+  },
+  methods: {
+    toggleColor() {
+      if (this.$colorMode.preference === "light") this.$colorMode.preference = "dark";
+      else this.$colorMode.preference = "light";
+    },
   },
 };
 </script>

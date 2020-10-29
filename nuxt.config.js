@@ -3,15 +3,12 @@ export default {
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
-  mode: "universal",
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "server",
-  server: {
-    port: 4000,
-  },
+  target: "static",
+
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
@@ -46,9 +43,7 @@ export default {
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
   ],
-  colorMode: {
-    classSuffix: "",
-  },
+
   /*
    ** Nuxt.js modules
    */
@@ -82,11 +77,14 @@ export default {
   axios: {
     baseURL: "https://api.rotihouselao.com",
   },
+  purgeCSS: {
+    whitelist: ["dark-mode"],
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {
-    cssSourceMap: false,
+    transpile: ["gsap"],
   },
 };
