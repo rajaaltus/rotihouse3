@@ -125,6 +125,7 @@ export default {
       return this.$store.getters["cart/numberOfItems"];
     },
   },
+
   methods: {
     gotoCheckout() {
       let dishesInCart = [];

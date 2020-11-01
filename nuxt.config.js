@@ -53,7 +53,9 @@ export default {
     "@nuxtjs/pwa",
     "@nuxtjs/strapi",
     "@nuxtjs/auth",
+    "@nuxtjs/universal-storage",
   ],
+
   strapi: {
     url: "https://api.rotihouselao.com",
     entities: ["categories", "dishes", "sliders"],

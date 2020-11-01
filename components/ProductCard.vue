@@ -49,11 +49,13 @@
             <h4 class="mt-1 w-3/5 dark:text-gray-400 text-gray-800 font-semibold text-lg leading-tight truncate">
               {{ dish.name }}
             </h4>
-            <button @click="addToCart(dish)" class="p-1 flex items-center border border-gray-100 dark:border-gray-600 hover:border-gray-400 focus:outline-none">
-              <svg class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button @click="addToCart(dish)" class="p-1 flex items-center border border-green-300 dark:border-gray-600 hover:border-0 hover:bg-green-600 hover:text-white focus:outline-none">
+              <span v-if="selectedQty > 0" class="bg-green-500 text-gray-800 font-medium text-xs px-1 rounded-full">{{ selectedQty }}</span>
+              <svg v-else class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span class="text-xs px-2 text-gray-400 dark:bg-gray-800">Add to cart</span>
+
+              <span class="text-xs pl-1 text-gray-800 font-normal dark:text-green-300">Add to cart</span>
             </button>
           </div>
           <div class="mt-1 text-gray-800 dark:text-gray-300">
@@ -77,9 +79,13 @@ import { mapState, mapMutations } from "vuex";
 export default {
   props: ["dish"],
   data() {
-    return { loading: true };
+    return { loading: true, selectedQty: 12 };
   },
-
+  computed: {
+    ...mapState({
+      selectedItems: (state) => state.cart.items,
+    }),
+  },
   mounted() {
     this.loading = false;
   },

@@ -32,6 +32,7 @@ export default {
     return {
       slickOptions: {
         slidesToShow: 1,
+        arrows: false,
       },
     };
   },
