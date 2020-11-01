@@ -3,15 +3,12 @@ export default {
    ** Nuxt rendering mode
    ** See https://nuxtjs.org/api/configuration-mode
    */
-  mode: "universal",
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "server",
-  server: {
-    port: 4000,
-  },
+  target: "static",
+
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
@@ -44,7 +41,9 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     "@nuxtjs/tailwindcss",
+    "@nuxtjs/color-mode",
   ],
+
   /*
    ** Nuxt.js modules
    */
@@ -54,7 +53,9 @@ export default {
     "@nuxtjs/pwa",
     "@nuxtjs/strapi",
     "@nuxtjs/auth",
+    "@nuxtjs/universal-storage",
   ],
+
   strapi: {
     url: "https://api.rotihouselao.com",
     entities: ["categories", "dishes", "sliders"],
@@ -78,11 +79,14 @@ export default {
   axios: {
     baseURL: "https://api.rotihouselao.com",
   },
+  purgeCSS: {
+    whitelist: ["dark-mode"],
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {
-    cssSourceMap: false,
+    transpile: ["gsap"],
   },
 };

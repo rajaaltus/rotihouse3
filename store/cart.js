@@ -20,7 +20,7 @@ export const mutations = {
       record.quantity++;
     }
     Cookies.set("cart", state.items);
-    localStorage.setItem("cart", state.items);
+    localStorage.setItem("cart", JSON.stringify(state.items));
   },
   remove(state, item) {
     const record = state.items.find((i) => i.id === item.id);
@@ -40,7 +40,6 @@ export const mutations = {
     localStorage.setItem("cart", state.items);
   },
 };
-
 export const getters = {
   items: (state) => {
     return state.items;

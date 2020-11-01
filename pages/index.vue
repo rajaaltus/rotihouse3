@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero class="hero" />
+    <!-- <Hero class="hero" /> -->
     <Toast v-if="$store.state.alert" />
     <!-- Search Section -->
     <section class="px-6 sm:px-20 mt-10">
@@ -29,10 +29,9 @@
     </div>
     <!-- Category Bar -->
     <category-bar class="mx-auto text-center" />
-
     <!-- products -->
     <div class="md:px-20 sm:mx-auto sm:px-4 px-2 sm:py-8 mt-10">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         <lazy-product-card v-for="(dish, index) in filteredDishes" :key="index" :dish="dish" />
       </div>
     </div>
@@ -57,6 +56,9 @@ export default {
     ...mapState({
       dishes: (state) => state.filteredDishes,
     }),
+    cartItems() {
+      return this.$storage.getLocalStorage("cart");
+    },
     totalPrice() {
       return this.$store.getters["cart/price"];
     },
@@ -67,8 +69,13 @@ export default {
       return this.dishes.filter((dish) => dish.name.toLowerCase().includes(this.search.toLowerCase()));
     },
   },
-
+  async fetch({ store }) {
+    let result = await fetch("https://api.rotihouselao.com/dishes").then((res) => res.json());
+    store.commit("INIT_DISHES", result);
+  },
   async mounted() {
+    this.$fetch;
+    if (this.cartItems && this.cartItems.length > 0) this.$store.commit("cart/setItems", this.cartItems);
     gsap.fromTo(
       ".hero",
       { y: "-400" },

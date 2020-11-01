@@ -10,6 +10,7 @@ export const state = () => ({
 
 export const mutations = {
   setUser(state, user) {
+    // let user = this.$auth.user;
     state.user = user;
     Cookies.set("user", user);
   },
@@ -34,22 +35,6 @@ export const mutations = {
 };
 
 export const actions = {
-  async nuxtServerInit({ commit }, { req }) {
-    let res = await this.$axios.$get("/dishes").then((resp) => {
-      commit("INIT_DISHES", resp);
-    });
-    let user = null;
-    let cart = [];
-    if (req && req.headers && req.headers.cookie) {
-      const parsed = cookieparser.parse(req.headers.cookie);
-      cart = (parsed.cart && JSON.parse(parsed.cart)) || [];
-    }
-
-    user = this.$auth.user;
-    commit("setUser", user);
-    commit("cart/setItems", cart);
-  },
-
   setDishesByCategory({ commit }, val) {
     commit("SET_DISHES_BY_CATEGORY", val);
   },

@@ -111,7 +111,7 @@
         </div>
 
         <p class="pt-2 font-medium text-xs md:text-sm text-gray-500">23/5, Khun Bu Lom Road, Sihom, Vientiane, Lao PDR.</p>
-        <p></p>
+
         <p class="flex items-center text-gray-600">
           <span
             ><svg class="fill-current h-4 w-4 text-green-500" viewBox="0 0 24 24" stroke="currentColor">
