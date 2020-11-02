@@ -3,7 +3,7 @@
     <PageTitle :title="dish ? dish.name : ''" />
     <div class="mx-6 md:mx-20">
       <div class="max-w-lg">
-        <img :src="dish && dish.image ? $axios.defaults.baseURL + dish.image.url : '/placeholder.png'" :alt="dish.image ? dish.image.name : 'no image'" />
+        <img :src="dish.image && dish.image.url ? $axios.defaults.baseURL + dish.image.url : '/placeholder.png'" :alt="dish.name" />
       </div>
       <div>
         <h3 class="text-2xl font-semibold text-gray-700 tracking-wide">{{ dish.name }}</h3>
@@ -15,21 +15,10 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
 export default {
-  computed: {
-    ...mapState({
-      dishes: (state) => state.product.dishes,
-    }),
-    dish() {
-      if (this.dishes.length > 0) return this.$store.state.product.dishes.find((dish) => dish.id == this.$route.params.id);
-    },
-  },
-  async created() {
-    if (this.$store.state.product.dishes.length == 0) {
-      // console.log('hi im from ')
-      this.$store.dispatch("product/initDishes");
-    }
+  async asyncData({ params }) {
+    const dish = await fetch(`https://api.rotihouselao.com/dishes/${params.id}`).then((res) => res.json());
+    return { dish };
   },
 };
 </script>
