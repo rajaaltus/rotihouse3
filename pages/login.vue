@@ -84,7 +84,7 @@
 <script>
 import gsap from "gsap";
 export default {
-  layout: "blank",
+  layout: "login",
   data() {
     return {
       email: "raja@altusinfotech.com",

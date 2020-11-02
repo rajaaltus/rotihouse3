@@ -75,18 +75,8 @@ export default {
   },
   async mounted() {
     this.$fetch;
-    if (this.cartItems && this.cartItems.length > 0) this.$store.commit("cart/setItems", this.cartItems);
-    gsap.fromTo(
-      ".hero",
-      { y: "-400" },
-      {
-        y: 0,
-        duration: 1,
-        ease: "bounce",
-        delay: 1,
-      }
-    );
     gsap.fromTo(".cart", { y: -1000 }, { y: 0, duration: 1, ease: "bounce", delay: 1.5 });
+    if (this.cartItems && this.cartItems.length > 0) this.$store.commit("cart/setItems", this.cartItems);
   },
   methods: {
     openCart() {

@@ -22,14 +22,14 @@ export default {
    ** Global CSS
    */
   css: [],
-  // router: {
-  //   middleware: ["auth"],
-  // },
+  router: {
+    middleware: ["auth"],
+  },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: "plugins/owl.js", ssr: false }],
+  plugins: [{ src: "plugins/owl.js", ssr: false }, "~/plugins/hello.js", { src: "plugins/vue-toastify.js", ssr: false }],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components

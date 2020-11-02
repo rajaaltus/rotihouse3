@@ -1,6 +1,3 @@
-import cookieparser from "cookieparser";
-import Cookies from "js-cookie";
-
 export const state = () => ({
   sideCart: false,
   filteredDishes: [],
@@ -9,11 +6,6 @@ export const state = () => ({
 });
 
 export const mutations = {
-  setUser(state, user) {
-    // let user = this.$auth.user;
-    state.user = user;
-    Cookies.set("user", user);
-  },
   logout(state) {
     state.user = null;
     Cookies.set("user", null);
