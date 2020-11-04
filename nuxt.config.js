@@ -21,7 +21,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ["~/node_modules/vue-multiselect/dist/vue-multiselect.min.css"],
   router: {
     middleware: ["auth"],
   },
@@ -29,7 +29,15 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: "plugins/owl.js", ssr: false }, "~/plugins/hello.js", "~/plugins/strapi.js", { src: "plugins/vue-toastify.js", ssr: false }, { src: "plugins/currency.js", ssr: false }],
+  plugins: [
+    { src: "plugins/owl.js", ssr: false },
+    "~/plugins/hello.js",
+    "~/plugins/strapi.js",
+    { src: "plugins/vue-toastify.js", ssr: false },
+    { src: "plugins/currency.js", ssr: false },
+    { src: "plugins/vue-multiselect.js", ssr: false },
+    { src: "plugins/toggler.js", ssr: false },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -59,7 +67,7 @@ export default {
   toast: {
     position: "top-center",
     theme: "bubble",
-    duration: 3000,
+    duration: 5000,
     register: [
       // Register custom toasts
       // {

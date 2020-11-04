@@ -42,7 +42,7 @@
         </div>
         <div v-else class="bg-white dark:bg-gray-800 p-4">
           <div class="flex items-baseline">
-            <span class="inline-block mr-2 bg-green-600 text-xs text-white px-2 uppercase font-semibold tracking-wide rounded-full">New</span>
+            <span v-show="dish.new" class="inline-block mr-2 bg-green-600 text-xs text-white px-2 uppercase font-semibold tracking-wide rounded-full">New</span>
             <div class="text-gray-600 dark:text-gray-500 text-xs uppercase tracking-wide">{{ dish.type }}</div>
           </div>
           <div class="flex justify-between items-center">
@@ -55,7 +55,7 @@
               {{ dish.price | formatCurrency }}
               <!-- <span class="text-gray-600 dark:text-gray-300 text-sm"> kip</span> -->
             </div>
-            <button @click="handleAdd(dish)" class="rounded p-2 flex items-center border border-green-300 dark:border-gray-600 hover:border-0 hover:bg-green-600 hover:text-white focus:outline-none duration-200">
+            <button @click="handleAdd(dish)" class="rounded p-2 flex items-center border border-green-300 dark:border-gray-600 hover:border-0 hover:bg-green-600 hover:text-white dark-hover:text-white focus:outline-none duration-200">
               <span v-if="selectedQty > 0" class="bg-green-500 text-gray-800 font-medium text-xs px-1 rounded-full">{{ selectedQty }}</span>
               <svg v-else class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />

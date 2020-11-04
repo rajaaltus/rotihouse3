@@ -13,7 +13,7 @@
           </svg>
         </button>
         <nuxt-link class="text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600 leading-loose" to="/menu">Our Menu</nuxt-link>
-        <nuxt-link class="text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600" to="/about">About</nuxt-link>
+        <nuxt-link class="text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600" to="/product-list">About</nuxt-link>
         <nuxt-link class="text-sm font-semibold uppercase tracking-wide px-4 hover:text-gray-600" to="/playground">Contact</nuxt-link>
         <account-dropdown class="hidden md:block sm:ml-6" />
       </div>
