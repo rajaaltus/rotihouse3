@@ -1,25 +1,26 @@
 <template>
   <div class="flex flex-col mt-20">
     <product-modal v-if="showModal" :product="selectedProduct" @close="showModal = false" @updateRequest="doEdit" />
-    <div class="absolute top-0 right-0"></div>
-    <!-- <pre>{{ products }}</pre> -->
-    <button class="bg-green-600 text-white px-12 py-2 mx-auto font-medium rounded" v-if="$fetchState.pending">Loading...</button>
+    <div class="flex items-center justify-end mb-5">
+      <input v-model="q" type="search" class="w-1/2 py-2 px-4 rounded-md focus:outline-none text-sm font-normal tracking-wide dark:bg-gray-400 bg-gray-300 border" placeholder="Search here..." />
+    </div>
+    <button class="bg-green-600 text-white px-12 py-2 m-auto font-medium rounded" v-if="$fetchState.pending">Loading...</button>
     <div v-else class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-          <table class="min-w-full divide-y divide-gray-200">
+          <table class="min-w-full divide-y bg-gray-600 divide-gray-200">
             <thead>
               <tr>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-200 uppercase tracking-wider">
                   Name
                 </th>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-200 uppercase tracking-wider">
                   Category
                 </th>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-200 uppercase tracking-wider">
                   Price
                 </th>
-                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-200 uppercase tracking-wider">
                   Cooking Time
                 </th>
                 <th class="px-6 py-3 bg-gray-50">
@@ -31,8 +32,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-400">
-              <tr v-for="product in products" :key="product.id">
+            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-300 dark:divide-gray-700">
+              <tr v-for="product in filteredProducts" :key="product.id">
                 <td class="px-6 py-4 whitespace-no-wrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
@@ -58,7 +59,7 @@
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">{{ product.cooking_time }} Mins</td>
-                <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+                <td class="px-6 py-4 whitespace-no-wrap text-center text-sm leading-5 font-medium">
                   <button class="text-indigo-600 hover:text-indigo-900" @click="handleEdit(product)">Edit</button>
                 </td>
               </tr>
@@ -77,13 +78,20 @@ export default {
   data() {
     return {
       products: [],
+      q: "",
       showModal: false,
       selectedProduct: {},
     };
   },
+  computed: {
+    filteredProducts() {
+      return this.products.filter((product) => product.name.toLowerCase().includes(this.q.toLowerCase()));
+    },
+  },
   async fetch() {
     this.products = await this.$strapi.find("dishes");
   },
+
   methods: {
     handleEdit(product) {
       this.showModal = true;

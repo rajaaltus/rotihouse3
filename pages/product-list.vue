@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center justify-center">
-    <div class="m-auto">
+  <div class="flex items-top justify-center">
+    <div class="mx-auto w-full lg:w-8/12 mb-10">
       <table-list @editTriggered="handleEdit" :editProduct="selectedProduct" />
     </div>
   </div>

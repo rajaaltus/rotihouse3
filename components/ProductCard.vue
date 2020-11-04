@@ -26,7 +26,7 @@
               <svg class="fill-none h-5 w-5 text-gray-400" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span class="ml-1 text-xs tracking-wider">25 Mins</span>
+              <span class="ml-1 text-xs tracking-wider">{{ dish.cooking_time }} Mins</span>
             </div>
           </button>
         </div>
@@ -46,7 +46,7 @@
             <div class="text-gray-600 dark:text-gray-500 text-xs uppercase tracking-wide">{{ dish.type }}</div>
           </div>
           <div class="flex justify-between items-center">
-            <h4 class="mt-1 w-4/5 dark:text-gray-400 text-gray-800 font-semibold text-lg leading-tight truncate">
+            <h4 class="mt-1 w-4/5 dark:text-gray-400 text-gray-800 font-semibold text-md leading-tight truncate">
               {{ dish.name }}
             </h4>
           </div>
