@@ -29,7 +29,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: "plugins/owl.js", ssr: false }, "~/plugins/hello.js", { src: "plugins/vue-toastify.js", ssr: false }],
+  plugins: [{ src: "plugins/owl.js", ssr: false }, "~/plugins/hello.js", "~/plugins/strapi.js", { src: "plugins/vue-toastify.js", ssr: false }, { src: "plugins/currency.js", ssr: false }],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -54,10 +54,25 @@ export default {
     "@nuxtjs/strapi",
     "@nuxtjs/auth",
     "@nuxtjs/universal-storage",
+    "@nuxtjs/toast",
   ],
-
+  toast: {
+    position: "top-center",
+    theme: "bubble",
+    duration: 3000,
+    register: [
+      // Register custom toasts
+      // {
+      //   name: 'my-error',
+      //   message: 'Oops...Something went wrong',
+      //   options: {
+      //     type: 'error'
+      //   }
+      // }
+    ],
+  },
   strapi: {
-    url: "https://api.rotihouselao.com",
+    url: "http://localhost:1337",
     entities: ["categories", "dishes", "sliders"],
   },
   auth: {
@@ -70,6 +85,9 @@ export default {
         },
         tokenType: "Bearer",
       },
+      google: {
+        client_id: "714823495518-a8uauims53ajjvvr0b0roev71okvf8lc.apps.googleusercontent.com",
+      },
     },
   },
   /*
@@ -77,7 +95,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "https://api.rotihouselao.com",
+    baseURL: "http://localhost:1337",
   },
   purgeCSS: {
     whitelist: ["dark-mode"],

@@ -3,14 +3,14 @@
     <!-- <Hero class="hero" /> -->
     <Toast v-if="$store.state.alert" />
     <!-- Search Section -->
-    <section class="px-6 sm:px-20 mt-10">
-      <div class="bg-white flex items-center px-2 py-4 border border-solid border-gray-300 shadow-sm">
+    <section class="px-6 sm:px-20 mt-20">
+      <div class="bg-white flex items-center px-2 py-1 rounded-full overflow-hidden border border-solid border-gray-300 shadow-sm">
         <!-- <svg viewBox="0 0 20 20" class="fill-current text-gray-500 w-6 h-6 mx-4"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg> -->
         <svg fill="none" class="text-gray-600 h-6 w-6 mx-4" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <div class="flex justify-between w-full items-center mr-4">
-          <input v-model="search" type="search" class="border-none focus:outline-none font-3xl mr-2 py-1 text-gray-500 w-full" @focus="search = ''" placeholder="Search Here..." />
+          <input v-model="search" type="search" class="focus:outline-none font-3xl mr-2 py-1 text-gray-500 w-full" @focus="search = ''" placeholder="Search Here..." />
         </div>
       </div>
     </section>
@@ -30,14 +30,16 @@
     <!-- Category Bar -->
     <category-bar class="mx-auto text-center" />
     <!-- products -->
-    <div class="md:px-20 sm:mx-auto sm:px-4 px-2 sm:py-8 mt-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        <lazy-product-card v-for="(dish, index) in filteredDishes" :key="index" :dish="dish" />
+    <div class="md:px-20 sm:mx-auto w-full sm:px-4 px-2 sm:py-8 mt-10">
+      <button class="mx-auto bg-green-600 text-white font-normal rounded-lg tracking-wider px-8 py-2" v-if="$fetchState.pending">Loading...</button>
+      <p v-else-if="$fetchState.error">An error occured :(</p>
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <lazy-product-card v-for="dish in filteredDishes" :key="dish.id" :dish="dish" />
       </div>
     </div>
 
     <!-- Side Checkout -->
-    <side-checkout class="z-50" />
+    <side-checkout class="z-50" @handleRemove="handleRemove" @trigger="$fetch" />
   </div>
 </template>
 
@@ -69,16 +71,22 @@ export default {
       return this.dishes.filter((dish) => dish.name.toLowerCase().includes(this.search.toLowerCase()));
     },
   },
-  async fetch({ store }) {
-    let result = await fetch("https://api.rotihouselao.com/dishes").then((res) => res.json());
-    store.commit("INIT_DISHES", result);
+  async fetch() {
+    const api = "http://localhost:1337/dishes";
+    // const api = "https://api.rotihouselao.com/dishes";
+    let result = await fetch(api).then((res) => res.json());
+    this.$store.commit("INIT_DISHES", result);
   },
-  async mounted() {
+  mounted() {
     this.$fetch;
+    this.$toast.success("Total " + this.$store.state.filteredDishes.length + " products loaded!");
     gsap.fromTo(".cart", { y: -1000 }, { y: 0, duration: 1, ease: "bounce", delay: 1.5 });
     if (this.cartItems && this.cartItems.length > 0) this.$store.commit("cart/setItems", this.cartItems);
   },
   methods: {
+    handleRemove(dish) {
+      console.log("from index");
+    },
     openCart() {
       this.$store.dispatch("setSideCart");
     },

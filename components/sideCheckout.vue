@@ -54,7 +54,7 @@
                             <td class="py-2 w-1/6 text-gray-700 text-sm">
                               <a @click="addToCart(item)" class="bg-gray-500 rounded-full px-1 text-white hover:shadow-md cursor-pointer text-lg tracking-wider font-semibold"><span> +</span></a>
                               {{ item.quantity }}
-                              <a @click="removeFromCart(item)" class="bg-red-700 rounded-full px-1 text-gray-300 hover:shadow-md cursor-pointer text-lg tracking-wider font-semibold"><span> -</span></a>
+                              <a @click="handleRemove(item)" class="bg-red-700 rounded-full px-1 text-gray-300 hover:shadow-md cursor-pointer text-lg tracking-wider font-semibold"><span> -</span></a>
                             </td>
                             <td class="py-2 w-1/3 text-gray-700 text-sm font-medium">
                               {{ item.price * item.quantity }}
@@ -132,8 +132,14 @@ export default {
       dishesInCart = this.selectedItems.map((item) => item.id);
       console.log(dishesInCart);
     },
+    handleRemove(item) {
+      console.log("from SideCart...emitted..");
+      this.$emit("handleRemove", item);
+      this.removeFromCart(item);
+    },
     async closeCart() {
       await this.$store.dispatch("closeCart");
+      this.$emit("trigger");
     },
     ...mapMutations({
       addToCart: "cart/add",
