@@ -46,7 +46,7 @@
                           <tr class="border-b border-solid border-gray-400" v-for="(item, index) in selectedItems" :key="index">
                             <td class="py-2 w-1/3">
                               <div class="flex items-center justify-start">
-                                <img class="hidden md:block w-16 h-16 rounded-full bg-white object-cover p-2" :src="item.image ? `${$axios.defaults.baseURL}` + item.image.url : '/logo.svg'" :alt="item.name" />
+                                <img class="hidden md:block w-16 h-16 rounded-full bg-white object-cover p-2" :src="item.image ? $url() + item.image.url : '/logo.svg'" :alt="item.name" />
                                 <span class="text-sm ml-2 font-medium text-gray-700">{{ item.name }}</span>
                               </div>
                             </td>

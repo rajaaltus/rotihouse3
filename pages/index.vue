@@ -72,14 +72,13 @@ export default {
     },
   },
   async fetch() {
-    const api = "http://51.79.160.53:1337/dishes";
-    // const api = "https://api.rotihouselao.com/dishes";
-    let result = await fetch(api).then((res) => res.json());
+    const url = this.$url() + "/dishes";
+    let result = await fetch(url).then((res) => res.json());
     this.$store.commit("INIT_DISHES", result);
   },
   mounted() {
     this.$fetch;
-    this.$toast.success("Total " + this.$store.state.filteredDishes.length + " products loaded!");
+    // this.$toast.success("Total " + this.$store.state.filteredDishes.length + " products loaded!");
     gsap.fromTo(".cart", { y: -1000 }, { y: 0, duration: 1, ease: "bounce", delay: 1.5 });
     if (this.cartItems && this.cartItems.length > 0) this.$store.commit("cart/setItems", this.cartItems);
   },

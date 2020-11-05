@@ -1,3 +1,4 @@
+const apiURL = "https://api2.rotihouselao.com";
 export default {
   /*
    ** Nuxt rendering mode
@@ -8,6 +9,9 @@ export default {
    ** See https://nuxtjs.org/api/configuration-target
    */
   target: "static",
+  env: {
+    apiUrl: apiURL,
+  },
 
   /*
    ** Headers of the page
@@ -80,7 +84,7 @@ export default {
     ],
   },
   strapi: {
-    url: "http://51.79.160.53:1337",
+    url: apiURL,
     entities: ["categories", "dishes", "sliders"],
   },
   auth: {
@@ -103,7 +107,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "http://51.79.160.53:1337",
+    baseURL: apiURL,
   },
   purgeCSS: {
     whitelist: ["dark-mode"],

@@ -21,7 +21,7 @@
           </a>
         </p>
       </div>
-      <form class="mt-8" @submit.prevent>
+      <form class="mt-8 max-w-sm mx-auto" @submit.prevent>
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm">
           <div>
@@ -87,8 +87,8 @@ export default {
   layout: "login",
   data() {
     return {
-      email: "raja@altusinfotech.com",
-      password: "raja98424",
+      email: "",
+      password: "",
     };
   },
   mounted() {
