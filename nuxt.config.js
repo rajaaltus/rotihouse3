@@ -8,7 +8,7 @@ export default {
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "static",
+  target: "server",
   env: {
     apiUrl: apiURL,
   },
@@ -37,11 +37,11 @@ export default {
     { src: "plugins/owl.js", ssr: false },
     "~/plugins/hello.js",
     "~/plugins/strapi.js",
+    "~/plugins/vueperslides.js",
     { src: "plugins/vue-toastify.js", ssr: false },
     { src: "plugins/currency.js", ssr: false },
     { src: "plugins/vue-multiselect.js", ssr: false },
     { src: "plugins/toggler.js", ssr: false },
-    { src: "plugins/vueperslides.js", ssr: false },
   ],
   /*
    ** Auto import components
