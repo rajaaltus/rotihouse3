@@ -99,10 +99,11 @@ export default {
       await this.$auth
         .loginWith("local", { data: { identifier: this.email, password: this.password } })
         .then((resp) => {
-          this.$router.push("/");
+          if (resp.ok) this.$router.push("/");
+          throw new Error(error);
         })
         .catch((e) => {
-          (this.email = ""), (this.password = ""), console.log("login response: " + response);
+          this.$toast.error(e.message);
         });
     },
   },

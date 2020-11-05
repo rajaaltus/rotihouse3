@@ -80,7 +80,7 @@ export default {
     ],
   },
   strapi: {
-    url: "http://localhost:1337",
+    url: "http://51.79.160.53:1337",
     entities: ["categories", "dishes", "sliders"],
   },
   auth: {
@@ -103,7 +103,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "http://localhost:1337",
+    baseURL: "http://51.79.160.53:1337",
   },
   purgeCSS: {
     whitelist: ["dark-mode"],

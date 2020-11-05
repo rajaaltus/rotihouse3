@@ -72,7 +72,7 @@ export default {
     },
   },
   async fetch() {
-    const api = "http://localhost:1337/dishes";
+    const api = "http://51.79.160.53:1337/dishes";
     // const api = "https://api.rotihouselao.com/dishes";
     let result = await fetch(api).then((res) => res.json());
     this.$store.commit("INIT_DISHES", result);
