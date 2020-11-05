@@ -41,6 +41,7 @@ export default {
     { src: "plugins/currency.js", ssr: false },
     { src: "plugins/vue-multiselect.js", ssr: false },
     { src: "plugins/toggler.js", ssr: false },
+    { src: "plugins/vueperslides.js", ssr: false },
   ],
   /*
    ** Auto import components

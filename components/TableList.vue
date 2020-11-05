@@ -91,7 +91,9 @@ export default {
   async fetch() {
     this.products = await this.$strapi.find("dishes");
   },
-
+  mounted() {
+    this.$fetch;
+  },
   methods: {
     handleEdit(product) {
       this.showModal = true;

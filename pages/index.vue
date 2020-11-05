@@ -2,9 +2,10 @@
   <div>
     <!-- <Hero class="hero" /> -->
     <Toast v-if="$store.state.alert" />
+    <Hero />
     <!-- Search Section -->
-    <section class="px-6 md:px-20 mt-20">
-      <div class="bg-white flex items-center px-2 py-1 w-10/12 mx-auto rounded-full overflow-hidden border border-solid border-gray-300 shadow-sm">
+    <section class="px-10 md:px-20 mt-10">
+      <div class="bg-white flex items-center py-1 lg:w-10/12 mx-auto rounded-full overflow-hidden border border-solid border-gray-300 shadow-sm">
         <!-- <svg viewBox="0 0 20 20" class="fill-current text-gray-500 w-6 h-6 mx-4"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg> -->
         <svg fill="none" class="text-gray-600 h-6 w-6 mx-4" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -28,7 +29,7 @@
       </button>
     </div>
     <!-- Category Bar -->
-    <category-bar class="mx-auto flex justify-center w-full" />
+    <category-bar class="mb-5 lg:mb-0 flex justify-center mx-8 lg:w-full" />
     <!-- products -->
     <div class="md:px-20 sm:mx-auto lg:w-10/12 sm:px-4 px-2 sm:py-8 mt-0">
       <button class="mx-auto bg-green-600 text-white font-normal rounded-lg tracking-wider px-8 py-2" v-if="$fetchState.pending">Loading...</button>
