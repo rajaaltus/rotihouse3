@@ -37,7 +37,7 @@
                 <td class="px-6 py-4 whitespace-no-wrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
-                      <img class="h-10 w-10 rounded-full object-cover" :src="product.image && product.image.url ? $axios.defaults.baseURL + product.image.url : '/placeholder.png'" alt="" />
+                      <img class="h-10 w-10 rounded-full object-cover" :src="product.image && product.image.url ? $url() + product.image.url : '/placeholder.png'" alt="" />
                     </div>
                     <div class="ml-4">
                       <div class="text-sm leading-5 font-medium text-gray-900 dark:text-green-400">
@@ -98,7 +98,6 @@ export default {
       this.selectedProduct = product;
     },
     async doEdit(product) {
-      // console.log("new product: ", product);
       await this.$strapi.$dishes.update(product.id, product);
       this.showModal = false;
     },

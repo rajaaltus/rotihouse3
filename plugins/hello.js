@@ -1,3 +1,5 @@
 export default (context, inject) => {
-  inject("hello", (msg) => console.log(msg));
+  inject("url", () => {
+    return context.env.apiUrl;
+  });
 };

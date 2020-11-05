@@ -11,7 +11,7 @@ export default {
     logout() {
       this.$auth.logout();
       this.$strapi.logout();
-      window.href("/");
+      // window.location("/");
     },
   },
 };

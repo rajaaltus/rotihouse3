@@ -9,7 +9,7 @@
         </div>
 
         <div v-else class="relative pb-2/3">
-          <img v-if="dish.image" class="absolute top-0 bottom-0 h-full w-full object-cover" :src="$axios.defaults.baseURL + dish.image.url" :alt="dish.name" />
+          <img v-if="dish.image" class="absolute top-0 bottom-0 h-full w-full object-cover" :src="$url() + dish.image.url" :alt="dish.name" />
           <div v-else>
             <svg class="fill-current absolute top-0 bottom-0 h-full w-full p-6 object-cover" viewBox="0 0 2221.7 2844">
               <g data-name="Layer 2">
