@@ -88,7 +88,7 @@ export default {
       local: {
         endpoints: {
           login: { url: "/auth/local", method: "post", propertyName: "jwt" },
-          logout: false,
+          logout: true,
           user: { url: "/users/me", method: "get", propertyName: false },
         },
         tokenType: "Bearer",

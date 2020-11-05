@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-red-400 rounded-full px-4 py-2 z-40">
+  <div class="bg-yellow-600 rounded-full px-4 py-4 z-40">
     <nuxt-link to="/">
       <svg class="fill-current text-gray-900 h-20" viewBox="0 0 2221.7 2844">
         <g data-name="Layer 2">
