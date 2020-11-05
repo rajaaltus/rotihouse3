@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-700 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen flex items-center justify-center bg-yellow-600 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full">
       <div class="">
-        <svg viewBox="0 0 2221.7 2844" class="logo fill-current h-40 text-gray-900 mx-auto">
+        <svg viewBox="0 0 2221.7 2844" class="logo fill-current h-24 xl:h-36 text-gray-900 mx-auto">
           <g data-name="Layer 2">
             <path
               class="bg-gray-800"
@@ -51,13 +51,13 @@
         <div class="mt-6 flex items-center justify-between">
           <div class="flex items-center">
             <input id="remember_me" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
-            <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-400">
+            <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-800">
               Remember me
             </label>
           </div>
 
           <div class="text-sm leading-5">
-            <a href="#" class="font-medium text-gray-400 hover:text-gray-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+            <a href="#" class="font-medium text-gray-700 hover:text-gray-800 focus:outline-none focus:underline transition ease-in-out duration-150">
               Forgot your password?
             </a>
           </div>
@@ -66,7 +66,7 @@
         <div class="mt-6">
           <button
             @click="handleLogin()"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-gray-800 bg-yellow-600 hover:bg-yellow-400 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition duration-150 ease-in-out"
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-yellow-400 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:border-yellow-300 focus:shadow-outline-yellow active:bg-yellow-700 transition duration-150 ease-in-out"
           >
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <svg class="h-5 w-5 text-yellow-400 hover:text-yellow-700 transition ease-in-out duration-150" fill="currentColor" viewBox="0 0 20 20">
@@ -84,7 +84,7 @@
 <script>
 import gsap from "gsap";
 export default {
-  layout: "blank",
+  layout: "login",
   data() {
     return {
       email: "raja@altusinfotech.com",
@@ -99,10 +99,11 @@ export default {
       await this.$auth
         .loginWith("local", { data: { identifier: this.email, password: this.password } })
         .then((resp) => {
-          this.$router.push("/");
+          if (resp.ok) this.$router.push("/");
+          throw new Error(error);
         })
         .catch((e) => {
-          (this.email = ""), (this.password = ""), console.log("login response: " + response);
+          this.$toast.error(e.message);
         });
     },
   },

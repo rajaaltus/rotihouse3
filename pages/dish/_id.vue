@@ -17,7 +17,8 @@
 <script>
 export default {
   async asyncData({ params }) {
-    const dish = await fetch(`https://api.rotihouselao.com/dishes/${params.id}`).then((res) => res.json());
+    const api = "http://51.79.160.53:1337/dishes/";
+    const dish = await fetch(api + params.id).then((res) => res.json());
     return { dish };
   },
 };

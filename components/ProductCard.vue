@@ -26,7 +26,7 @@
               <svg class="fill-none h-5 w-5 text-gray-400" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span class="ml-1 text-xs tracking-wider">25 Mins</span>
+              <span class="ml-1 text-xs tracking-wider">{{ dish.cooking_time }} Mins</span>
             </div>
           </button>
         </div>
@@ -42,25 +42,26 @@
         </div>
         <div v-else class="bg-white dark:bg-gray-800 p-4">
           <div class="flex items-baseline">
-            <span class="inline-block mr-2 bg-green-600 text-xs text-white px-2 uppercase font-semibold tracking-wide rounded-full">New</span>
+            <span v-show="dish.new" class="inline-block mr-2 bg-green-600 text-xs text-white px-2 uppercase font-semibold tracking-wide rounded-full">New</span>
             <div class="text-gray-600 dark:text-gray-500 text-xs uppercase tracking-wide">{{ dish.type }}</div>
           </div>
-          <div class="flex justify-between">
-            <h4 class="mt-1 w-3/5 dark:text-gray-400 text-gray-800 font-semibold text-lg leading-tight truncate">
+          <div class="flex justify-between items-center">
+            <h4 class="mt-1 w-4/5 dark:text-gray-400 text-gray-800 font-semibold text-md leading-tight truncate">
               {{ dish.name }}
             </h4>
-            <button @click="addToCart(dish)" class="p-1 flex items-center border border-green-300 dark:border-gray-600 hover:border-0 hover:bg-green-600 hover:text-white focus:outline-none">
+          </div>
+          <div class="flex justify-between mt-1 text-gray-800 dark:text-gray-300">
+            <div class="pt-2">
+              {{ dish.price | formatCurrency }}
+              <!-- <span class="text-gray-600 dark:text-gray-300 text-sm"> kip</span> -->
+            </div>
+            <button @click="handleAdd(dish)" class="rounded p-2 flex items-center border border-green-300 dark:border-gray-600 hover:border-0 hover:bg-green-600 hover:text-white dark-hover:text-white focus:outline-none duration-200">
               <span v-if="selectedQty > 0" class="bg-green-500 text-gray-800 font-medium text-xs px-1 rounded-full">{{ selectedQty }}</span>
               <svg v-else class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-
-              <span class="text-xs pl-1 text-gray-800 font-normal dark:text-green-300">Add to cart</span>
+              <span class="text-xs pl-1 dark:text-green-300 font-medium">Add to cart</span>
             </button>
-          </div>
-          <div class="mt-1 text-gray-800 dark:text-gray-300">
-            {{ dish.price }}
-            <span class="text-gray-600 dark:text-gray-300 text-sm"> kip</span>
           </div>
           <div class="mt-2 flex items-center">
             <svg v-for="i in 5" :key="i" :class="i <= dish.rating ? 'text-green-600' : 'text-gray-400'" class="fill-current h-4 w-4" viewBox="0 0 20 20">
@@ -75,23 +76,37 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 export default {
   props: ["dish"],
   data() {
-    return { loading: true, selectedQty: 12 };
+    return { loading: true, selectedQty: 0 };
   },
   computed: {
-    ...mapState({
-      selectedItems: (state) => state.cart.items,
-    }),
+    cartItems() {
+      return this.$storage.getLocalStorage("cart");
+    },
   },
-  mounted() {
+
+  async mounted() {
     this.loading = false;
+    this.handleSelectedQty();
   },
   methods: {
+    handleSelectedQty() {
+      if (this.$storage.getLocalStorage("cart") === null) this.selectedQty = 0;
+      else {
+        const result = this.$storage.getLocalStorage("cart").find((item) => item.id === this.dish.id);
+        if (result) this.selectedQty = result.quantity;
+      }
+    },
     handleAdd(dish) {
-      console.log(dish);
+      this.addToCart(dish);
+      this.handleSelectedQty();
+    },
+    handleRemove(dish) {
+      this.removeFromCart(dish);
+      this.handleSelectedQty();
     },
     ...mapMutations({
       addToCart: "cart/add",

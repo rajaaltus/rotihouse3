@@ -1,6 +1,6 @@
 <template>
-  <section class="mt-10 mx-4 md:mx-20">
-    <div class="grid grid-1 grid-flow-col gap-8 mx-4 pb-4 overflow-x-scroll">
+  <section class="mt-5">
+    <div class="grid grid-1 grid-flow-col gap-16 mx-4 pb-0 overflow-x-scroll">
       <div v-for="(category, index) in categories" :key="index" class="">
         <button @click="filterDishes(category.name)" class="focus:outline-none font-bold text-lg text-gray-600 hover:text-gray-800 hover:underline transition ease-out-in duration-500">
           {{ category.name }}

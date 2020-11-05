@@ -21,15 +21,23 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
-  // router: {
-  //   middleware: ["auth"],
-  // },
+  css: ["~/node_modules/vue-multiselect/dist/vue-multiselect.min.css"],
+  router: {
+    middleware: ["auth"],
+  },
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: "plugins/owl.js", ssr: false }],
+  plugins: [
+    { src: "plugins/owl.js", ssr: false },
+    "~/plugins/hello.js",
+    "~/plugins/strapi.js",
+    { src: "plugins/vue-toastify.js", ssr: false },
+    { src: "plugins/currency.js", ssr: false },
+    { src: "plugins/vue-multiselect.js", ssr: false },
+    { src: "plugins/toggler.js", ssr: false },
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -54,10 +62,25 @@ export default {
     "@nuxtjs/strapi",
     "@nuxtjs/auth",
     "@nuxtjs/universal-storage",
+    "@nuxtjs/toast",
   ],
-
+  toast: {
+    position: "top-center",
+    theme: "bubble",
+    duration: 5000,
+    register: [
+      // Register custom toasts
+      // {
+      //   name: 'my-error',
+      //   message: 'Oops...Something went wrong',
+      //   options: {
+      //     type: 'error'
+      //   }
+      // }
+    ],
+  },
   strapi: {
-    url: "https://api.rotihouselao.com",
+    url: "http://51.79.160.53:1337",
     entities: ["categories", "dishes", "sliders"],
   },
   auth: {
@@ -65,10 +88,13 @@ export default {
       local: {
         endpoints: {
           login: { url: "/auth/local", method: "post", propertyName: "jwt" },
-          logout: false,
+          logout: true,
           user: { url: "/users/me", method: "get", propertyName: false },
         },
         tokenType: "Bearer",
+      },
+      google: {
+        client_id: "714823495518-a8uauims53ajjvvr0b0roev71okvf8lc.apps.googleusercontent.com",
       },
     },
   },
@@ -77,7 +103,7 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: "https://api.rotihouselao.com",
+    baseURL: "http://51.79.160.53:1337",
   },
   purgeCSS: {
     whitelist: ["dark-mode"],

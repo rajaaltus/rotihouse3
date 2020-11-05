@@ -9,7 +9,7 @@
     <div v-if="showDrop" class="sm:absolute right-0 z-20 mt-2 py-2 w-56 bg-gray-900 shadow-lg">
       <nuxt-link class="block px-4 py-2 text-gray-400 hover:bg-red-600 hover:text-white" to="/settings">Account Settings</nuxt-link>
       <nuxt-link class="block px-4 py-2 text-gray-400 hover:bg-red-600 hover:text-white" to="/orders">My Orders</nuxt-link>
-      <button class="block px-4 py-2 text-gray-400 hover:bg-red-600 hover:text-white" @click="signOut">Sign out</button>
+      <nuxt-link class="block px-4 py-2 text-gray-400 hover:bg-red-600 hover:text-white" to="/signout">Sign out</nuxt-link>
     </div>
   </div>
 </template>

@@ -35,6 +35,19 @@ export default {
         arrows: false,
       },
     };
+    mounted() {
+      gsap.fromTo(
+      ".hero",
+      { y: "-400" },
+      {
+        y: 0,
+        duration: 1,
+        ease: "bounce",
+        delay: 1,
+      }
+    );
+
+    }
   },
 };
 </script>
