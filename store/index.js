@@ -18,6 +18,7 @@ export const mutations = {
     state.sideCart = sideCart;
   },
   INIT_DISHES(state, resp) {
+    console.log("hi from init");
     state.dishes = resp;
     state.filteredDishes = resp;
   },
@@ -27,6 +28,10 @@ export const mutations = {
 };
 
 export const actions = {
+  async nuxtServerInit(vuexContext, { $strapi }) {
+    const result = await $strapi.$dishes.find();
+    vuexContext.commit("INIT_DISHES", result);
+  },
   setDishesByCategory({ commit }, val) {
     commit("SET_DISHES_BY_CATEGORY", val);
   },
