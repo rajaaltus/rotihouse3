@@ -3,7 +3,7 @@
     <Header />
     <div class="flex-1 overflow-y-auto">
       <Nuxt class="min-h-screen" />
-      <Footer />
+      <Footer2 />
     </div>
   </div>
 </template>

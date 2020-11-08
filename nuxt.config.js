@@ -25,7 +25,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ["~/node_modules/vue-multiselect/dist/vue-multiselect.min.css"],
+  css: ["~/node_modules/vue-multiselect/dist/vue-multiselect.min.css", "~/node_modules/vueperslides/dist/vueperslides.css"],
   router: {
     middleware: ["auth"],
   },
