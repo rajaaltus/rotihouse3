@@ -17,10 +17,14 @@ export default {
       duration: 3000,
     };
   },
-  async fetch() {
+  created: async function () {
     const result = await fetch(this.$url() + "/sliders/1").then((resp) => resp.json());
     this.slides = result.slides;
   },
+  // async fetch() {
+  //   const result = await fetch(this.$url() + "/sliders/1").then((resp) => resp.json());
+  //
+  // },
   mounted() {},
 };
 </script>

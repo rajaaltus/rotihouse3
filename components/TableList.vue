@@ -75,9 +75,15 @@
 
 <script>
 export default {
+  props: {
+    products: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
-      products: [],
+      // products: [],
       q: "",
       showModal: false,
       selectedProduct: {},
@@ -87,6 +93,9 @@ export default {
     filteredProducts() {
       return this.products.filter((product) => product.name.toLowerCase().includes(this.q.toLowerCase()));
     },
+  },
+  created() {
+    this.$fetch;
   },
   async fetch() {
     this.products = await this.$strapi.find("dishes");

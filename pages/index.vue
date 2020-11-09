@@ -72,6 +72,7 @@ export default {
       return this.dishes.filter((dish) => dish.name.toLowerCase().includes(this.search.toLowerCase()));
     },
   },
+
   async fetch() {
     const url = this.$url() + "/dishes";
     // let result = await fetch(url).then((res) => res.json());
@@ -79,7 +80,7 @@ export default {
     this.$store.commit("INIT_DISHES", result);
   },
   mounted() {
-    // this.$fetch;
+    this.$fetch;
     // this.$toast.success("Total " + this.$store.state.filteredDishes.length + " products loaded!");
     gsap.fromTo(".cart", { y: -1000 }, { y: 0, duration: 1, ease: "bounce", delay: 1.5 });
     if (this.cartItems && this.cartItems.length > 0) this.$store.commit("cart/setItems", this.cartItems);
