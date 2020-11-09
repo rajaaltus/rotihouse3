@@ -8,7 +8,7 @@ export default {
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
-  target: "server",
+  target: "static",
   env: {
     apiUrl: apiURL,
   },
@@ -92,9 +92,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: "/auth/local", method: "post", propertyName: "jwt" },
+          login: { url: apiURL + "/auth/local", method: "post", propertyName: "jwt" },
           logout: true,
-          user: { url: "/users/me", method: "get", propertyName: false },
+          user: { url: apiURL + "/users/me", method: "get", propertyName: false },
         },
         tokenType: "Bearer",
       },
