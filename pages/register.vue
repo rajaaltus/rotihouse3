@@ -12,7 +12,7 @@
           </g>
         </svg>
         <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-          Sign in to your account
+          Register new account
         </h2>
         <p class="mt-2 text-center text-sm leading-5 text-gray-800">
           and
@@ -24,26 +24,37 @@
       <form class="mt-8 max-w-sm mx-auto" @submit.prevent>
         <input type="hidden" name="remember" value="true" />
         <div class="rounded-md shadow-sm">
-          <div>
+          <div class="mt-2">
             <input
               aria-label="Email address"
               name="email"
-              v-model="email"
+              v-model="registerData.email"
               type="email"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+              class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
               placeholder="Email address"
             />
           </div>
-          <div class="-mt-px">
+          <div class="mt-2">
             <input
               aria-label="Password"
               name="password"
-              v-model="password"
+              v-model="registerData.password"
               type="password"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+              class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
               placeholder="Password"
+            />
+          </div>
+          <div class="mt-2">
+            <input
+              aria-label="Password"
+              name="password"
+              v-model="retypePassword"
+              type="password"
+              required
+              class="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+              placeholder="Confirm Password"
             />
           </div>
         </div>
@@ -51,21 +62,13 @@
         <div class="mt-6 flex items-center justify-between">
           <div class="flex items-center">
             <input id="remember_me" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out" />
-            <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-800">
-              Remember me
-            </label>
-          </div>
-
-          <div class="text-sm leading-5">
-            <a href="#" class="font-medium text-gray-700 hover:text-gray-800 focus:outline-none focus:underline transition ease-in-out duration-150">
-              Forgot your password?
-            </a>
+            <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-800"> I Agree for <a href="#" class="text-indigo-600">terms &amp; conditions</a> </label>
           </div>
         </div>
 
         <div class="mt-6">
           <button
-            @click="handleLogin()"
+            @click="handleRegister()"
             class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-yellow-400 bg-gray-800 hover:bg-gray-700 focus:outline-none focus:border-yellow-300 focus:shadow-outline-yellow active:bg-yellow-700 transition duration-150 ease-in-out"
           >
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
@@ -73,41 +76,33 @@
                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
               </svg>
             </span>
-            Sign in
+            Register
           </button>
         </div>
       </form>
       <div class="text-sm mt-4">
-        Not having account? <nuxt-link to="/register"><button class="text-yellow-400 focus:outline-none hover:text-yellow-300">Register now</button></nuxt-link>
+        Already having account? <nuxt-link to="/login"><button class="text-yellow-400 focus:outline-none hover:text-yellow-300">Login</button></nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import gsap from "gsap";
 export default {
   layout: "login",
+  auth: false,
   data() {
     return {
-      email: "",
-      password: "",
+      registerData: {
+        username: "",
+        email: "",
+        password: "",
+      },
+      retypePassword: "",
     };
   },
-  mounted() {
-    gsap.fromTo(".logo", { opacity: 0.5, scale: 0 }, { opacity: 1, scale: 1, duration: 3, ease: "elastic" });
-  },
   methods: {
-    async handleLogin() {
-      await this.$auth
-        .loginWith("local", { data: { identifier: this.email, password: this.password } })
-        .then((resp) => {
-          this.$router.push("/");
-        })
-        .catch((e) => {
-          this.$toast.error(e.message);
-        });
-    },
+    handleRegister() {},
   },
 };
 </script>

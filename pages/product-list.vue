@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -14,8 +15,17 @@ export default {
       products: [],
     };
   },
+  computed: {
+    ...mapState({
+      dishes: (state) => state.filteredDishes,
+    }),
+  },
   async fetch() {
-    this.products = await this.$strapi.find("dishes");
+    let result = await this.$strapi.find("dishes");
+    this.$store.commit("INIT_DISHES", result);
+  },
+  mounted() {
+    this.products = this.dishes;
   },
   methods: {
     handleEdit(product) {
