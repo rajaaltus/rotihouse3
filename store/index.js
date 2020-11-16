@@ -18,7 +18,6 @@ export const mutations = {
     state.sideCart = sideCart;
   },
   INIT_DISHES(state, resp) {
-    console.log("hi from init");
     state.dishes = resp;
     state.filteredDishes = resp;
   },
